@@ -1,15 +1,17 @@
 body {
     font-size: 100%;
-    background-color: midnightblue;
+    background-color: slategrey;
 }
 
 h1 {
-    margin-top: 115px;
-    font-family: Garamond;
-    font-size: 3em;
+    background-color: midnightblue;
+    margin: 70px 185px 50px;
+    box-shadow: -5px 5px 8px black;
+    font-family: UnifrakturMaguntia, "Spectral SC", Tangerine, Garamond;
+    font-size: 4em;
     text-align: center;
     color: blanchedalmond;
-    text-shadow: -2px 2px 3px black;
+    text-shadow: -2px 2px 5px black;
     border: 10px solid tan;
     border-radius: 2em;
 }
