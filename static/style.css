@@ -1,17 +1,55 @@
 body {
     font-size: 100%;
-    background-color: slategrey;
+    background-color: black;
 }
 
 h1 {
     background-color: midnightblue;
-    margin: 70px 185px 50px;
-    box-shadow: -5px 5px 8px black;
+    margin-top: 0px;
+    max-width: 30vw;
+    padding: .2vw;
+    box-shadow: -0.6vw 0.6vw 0.8vw black;
     font-family: UnifrakturMaguntia, "Spectral SC", Tangerine, Garamond;
-    font-size: 4em;
+    font-size: 5vw;
     text-align: center;
     color: blanchedalmond;
-    text-shadow: -2px 2px 5px black;
-    border: 10px solid tan;
+    text-shadow: -0.25vw 0.25vw 0.3vw black;
+    border: .5vw solid tan;
     border-radius: 2em;
+}
+
+table, tr, td {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    padding: 0.5px 0.5px 0px 0px;
+    border-spacing: 0;
+}
+
+div.black {
+    width: 0.75vw;
+    height: 0.75vw;
+    background-color: black;
+    margin: 0%;
+}
+div.grey{
+    width: 0.75vw;
+    height: 0.75vw;
+    background-color: grey;
+    margin: 0%;
+}
+div.green {
+    width: 0.75.vw;
+    height: 0.75vw;
+    background-color: rgb(48, 89, 2);
+    margin: 0%;
+}
+div.blue{
+    width: 0.75vw;
+    height: 0.75vw;
+    background-color: navy;
+    margin: 0%;
+}
+div.grid {
+    border: 1px solid black;
 }

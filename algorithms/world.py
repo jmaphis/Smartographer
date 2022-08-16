@@ -10,7 +10,8 @@ from copy import deepcopy
 class World():
 
     # Generates a world map using cellular automata
-    def __init__(self, grid_width, grid_height, density, smoothing=1):
+    def __init__(self, grid_width: int, grid_height: int,
+                 density: int, smoothing=2):
 
         self.grid_width = grid_width
         self.grid_height = grid_height
@@ -24,8 +25,8 @@ class World():
         for x in range(self.grid_width):
             column = []
             for y in range(self.grid_height):
-                if x not in (0, self.grid_width)\
-                and y not in (0, self.grid_height):
+                if x not in (0, self.grid_width) and\
+                        y not in (0, self.grid_height):
                     roll = random.randint(0, 100)
                     if roll < self.density:
                         column.append(1)
@@ -88,6 +89,9 @@ class World():
                     self.next_generation[x][y] = 0
             # replaces the current generation with the next
             self.matrix = deepcopy(self.next_generation)
+
+    def get_matrix(self):
+        return self.matrix
 
 
 if __name__ == '__main__':

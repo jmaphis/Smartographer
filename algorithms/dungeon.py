@@ -95,6 +95,9 @@ class Dungeon():
         self.generate_rooms()
         self.generate_halls()
 
+    def get_matrix(self):
+        return self.matrix
+
 
 class Room():
 

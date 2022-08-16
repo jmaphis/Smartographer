@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Tangerine|spectral+SC|UnifrakturMaguntia">
     <title>Smartographer</title>
+    <h1>smartographer</h1>
 </head>
 <body>
     <div>
-        <h1>smartographer</h1>
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 </html>

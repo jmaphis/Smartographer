@@ -8,7 +8,7 @@ import random
 class Cave:
 
     # generates a cave map using the 'Random Walk' technique
-    def __init__(self, grid_width: int, grid_height: int, cave_size: int):
+    def __init__(self, grid_width: int, grid_height: int, cave_size: int, centered=False):
         self.grid_width = grid_width
         self.grid_height = grid_height
         self.cave_size = cave_size
@@ -19,6 +19,11 @@ class Cave:
             for y in range(self.grid_height):
                 column.append(0)
             self.matrix.append(column)
+
+        if centered:
+            self.generate_centered()
+        else:
+            self.generate()        
 
     def valid_step(self, walker, step):
         # checks if the next step is within list range
@@ -96,6 +101,10 @@ class Cave:
                 walker = {'x': self.grid_width // 2,
                           'y': self.grid_height // 2}
 
+    def get_matrix(self):
+        return self.matrix
+        print("testing")
+
 
 if __name__ == '__main__':
     # generates and prints a matrix for testing purposes.
@@ -106,4 +115,4 @@ if __name__ == '__main__':
 
     map = Cave(GRID_WIDTH, GRID_HEIGHT, 750)
     map.generate()
-    print(map.matrix)
+    print(map.get_matrix())
