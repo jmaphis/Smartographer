@@ -1,3 +1,11 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+label {
+    color: red;
+}
 body {
     font-size: 100%;
     background-color: black;
@@ -6,16 +14,19 @@ body {
 h1 {
     background-color: midnightblue;
     margin-top: 0px;
-    max-width: 30vw;
+    max-width: 33vw;
     padding: .2vw;
     box-shadow: -0.6vw 0.6vw 0.8vw black;
-    font-family: UnifrakturMaguntia, "Spectral SC", Tangerine, Garamond;
+    font-family: UnifrakturMaguntia, Tangerine, Garamond;
     font-size: 5vw;
     text-align: center;
     color: blanchedalmond;
     text-shadow: -0.25vw 0.25vw 0.3vw black;
-    border: .5vw solid tan;
+    border: .5vw solid rgb(240, 205, 102);
     border-radius: 2em;
+}
+h2 {
+    color: red;
 }
 
 table, tr, td {
@@ -25,31 +36,35 @@ table, tr, td {
     padding: 0.5px 0.5px 0px 0px;
     border-spacing: 0;
 }
-
-div.black {
-    width: 0.75vw;
-    height: 0.75vw;
+.tile {
+    width: 0.5vw;
+    height: 0.5vw;
+    margin: 0%;
+}
+.black.tile {
     background-color: black;
-    margin: 0%;
 }
-div.grey{
-    width: 0.75vw;
-    height: 0.75vw;
+.grey.tile{
     background-color: grey;
-    margin: 0%;
 }
-div.green {
-    width: 0.75.vw;
-    height: 0.75vw;
+.green.tile {
     background-color: rgb(48, 89, 2);
-    margin: 0%;
 }
-div.blue{
-    width: 0.75vw;
-    height: 0.75vw;
+.blue.tile{
     background-color: navy;
-    margin: 0%;
 }
-div.grid {
+.grid {
     border: 1px solid black;
+}
+a:link, a:visited {
+    background-color: midnightblue;
+    color: blanchedalmond;
+    padding: 1vw 2vw;
+    border: 0.2vw solid rgb(240, 205, 102);
+    border-radius: 2em;
+    text-align: center;
+    text-decoration: none;
+}
+a:hover, a:active {
+    background-color: rgb(47, 47, 214);
 }

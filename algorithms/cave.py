@@ -18,12 +18,7 @@ class Cave:
             column = []
             for y in range(self.grid_height):
                 column.append(0)
-            self.matrix.append(column)
-
-        if centered:
-            self.generate_centered()
-        else:
-            self.generate()        
+            self.matrix.append(column)      
 
     def valid_step(self, walker, step):
         # checks if the next step is within list range
@@ -47,7 +42,7 @@ class Cave:
         walker = {'x': self.grid_width // 2, 'y': self.grid_height // 2}
         steps = 0
         # change the value at the starting tile
-        self.array[walker['x']][walker['y']] = 1
+        self.matrix[walker['x']][walker['y']] = 1
 
         while steps < self.cave_size:
             # pick a random direction and adjust the walker's position

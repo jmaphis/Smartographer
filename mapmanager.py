@@ -1,9 +1,11 @@
 from algorithms.cave import Cave
 from algorithms.dungeon import Dungeon
 from algorithms.world import World
+
 from copy import deepcopy
 
 class MapManager():
+    # handles the creation of maps, and fills their matrices with html
 
     def __init__(self, width, height, args=None, style='normal'):
         self.style = style
@@ -15,6 +17,7 @@ class MapManager():
     def get_map(self, type):
         if type == 'cave':
             new_map = Cave(self.width, self.height, 750)
+            new_map.generate()
             new_map = self.convert(new_map.get_matrix(), type)
         if type == 'dungeon':
             new_map = Dungeon(self.width, self.height, (9, 15), 6)
@@ -33,36 +36,22 @@ class MapManager():
             for y, tile in enumerate(column):
                 template_map[x][y] = self.get_divs(tile, type)
         return template_map
-        '''template_map = []
-        for x, column in enumerate(map):
-            template_column = []
-            for y, tile in enumerate(column):
-                template_column.append(self.get_divs(map, tile, type))
-            template_map.append(template_column)
-        return template_map'''
 
     def get_divs(self, tile, type):
-        if type == 'cave':
+        if type == 'cave' or type == 'dungeon':
             if tile == 1:
                 if self.style == 'normal':
-                    return '<div class="grey"></div>'
+                    return '<div class="grey tile"></div>'
             else:
                 if self.style == 'normal':
-                    return '<div class="black"></div>'
-        if type == 'dungeon':
-            if tile == 1:
-                if self.style == 'normal':
-                    return '<div class="grey"></div>'
-            else:
-                if self.style == 'normal':
-                    return '<div class="black"></div>'
+                    return '<div class="black tile"></div>'
         if type == 'world':
             if tile == 1:
                 if self.style == 'normal':
-                    return '<div class="green"></div>'
+                    return '<div class="green tile"></div>'
             else:
                 if self.style == 'normal':
-                    return '<div class="blue"></div>'
+                    return '<div class="blue tile"></div>'
 
 if __name__ == "__main__":
     manager = MapManager(30, 60)
