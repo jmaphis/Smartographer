@@ -7,10 +7,23 @@ label {
     color: red;
 }
 body {
-    font-size: 100%;
     background-color: black;
 }
-
+/* dsvbodysdf {
+    font-size: 100%;
+    background-color: black;
+    background-image: url('assets/wood_grain.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%; 
+} */
+#scroll {
+    background-image: url('assets/map-scroll.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    position: fixed;
+}
 h1 {
     background-color: midnightblue;
     margin-top: 0px;

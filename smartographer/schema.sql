@@ -11,7 +11,8 @@ CREATE TABLE map (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     author_id INTEGER NOT NULL,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    name TEXT NOT NULL,
-    map INTEGER,
+    name TEXT,
+    type TEXT NOT NULL,
+    map BLOB NOT NULL,
     FOREIGN KEY (author_id) REFERENCES user (id)
 );

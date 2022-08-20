@@ -2,7 +2,7 @@
 {% block content %}
     <div id="map_output">
         <table>
-            {% for row in map_matrix %}
+            {% for row in world_map %}
                 <tr>
                 {% for tile in row %}
                     <td>{{ tile|safe }}</td>
@@ -11,4 +11,9 @@
             {% endfor %}
         </table>
     </div>
+    <ul>
+        <li><a href="{{ url_for('maps.refresh_world') }}">Refresh</a>
+        <li><a href="{{ url_for('maps.dungeon') }}">Dungeon Map</a>
+        <li><a href="{{ url_for('maps.cave') }}">Cave Map</a>
+    </ul>
 {% endblock %}

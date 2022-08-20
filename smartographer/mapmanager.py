@@ -1,6 +1,6 @@
-from algorithms.cave import Cave
-from algorithms.dungeon import Dungeon
-from algorithms.world import World
+from smartographer.algorithms.cave import Cave
+from smartographer.algorithms.dungeon import Dungeon
+from smartographer.algorithms.world import World
 
 from copy import deepcopy
 
