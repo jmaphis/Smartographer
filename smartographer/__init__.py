@@ -20,8 +20,8 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     @app.route('/')
-    def home():
-        return render_template('home.html')
+    def index():
+        return render_template('index.html')
 
     from . import db
     db.init_app(app)
@@ -31,9 +31,5 @@ def create_app(test_config=None):
 
     from . import maps
     app.register_blueprint(maps.bp)
-
-    from . import home
-    app.register_blueprint(home.bp)
-    app.add_url_rule('/', endpoint='index')
 
     return app 

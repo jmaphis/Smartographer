@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block section_title %}
+{% endblock %}
+
+{% block content %}
+    <ul>
+        <li><a href="{{ url_for('maps.get_map', **{'type': 'cave'}) }}">Cave Map</a>
+        <li><a href="{{ url_for('maps.get_map', **{'type': 'dungeon'}) }}">Dungeon Map</a>
+        <li><a href="{{ url_for('maps.get_map', **{'type': 'world'}) }}">World Map</a>
+    </ul>
+{% endblock %}

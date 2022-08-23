@@ -1,0 +1,9 @@
+{% extends 'get_map.html' %}
+
+{% block save_input %}
+    <form method="post">
+        <label for="password">Map Name</label>
+        <input name="mapname" id="mapname" required>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

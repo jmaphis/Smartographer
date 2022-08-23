@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for map in loaded_maps %}
+        <div>
+            <ul>
+                <li><h1>{{ map['type'] }}</h1></li>
+                <li><h1>{{ map['created'] }}</h1></li>
+                {% if map['name'] %}
+                    <li><h1>{{ map['name'] }}</h1></li>
+                {% endif %}
+                <br><br>
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}

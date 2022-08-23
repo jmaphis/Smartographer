@@ -8,27 +8,23 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Tangerine|UnifrakturMaguntia">
     <title>Smartographer</title>
     <nav>
-        <h1>smartographer</h1>
-            {% block section_title %}
-            {% endblock %}
-        <ul>
-            {% if g.user %}
-                <li>{{ g.user['username'] }}</li>
-                <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-            {% else %}
-                <li><a href="{{ url_for('auth.register') }}">Register</a>
-                <li><a href="{{ url_for('auth.login') }}">Log In</a>
-            {% endif %}
-        </ul>
+        <h1><a id="logo" href="{{ url_for('index') }}">smartographer</a></h1>
+        {% block section_title %}
+        {% endblock %}
+        {% if g.user %}
+            {{ g.user['username'] }}
+            <a href="{{ url_for('auth.logout') }}">Log Out</a>
+        {% else %}
+            <a href="{{ url_for('auth.register') }}">Register</a>
+            <a href="{{ url_for('auth.login') }}">Log In</a>
+        {% endif %}
+        <a href="{{ url_for('maps.load') }}">Load Map</a>
     </nav>
 </head>
 <body>
-    <img src="assets/wood_grain.jpg" alt="Table">
-    <img src="assets/map-scroll.png" alt="Map Scroll" id="scroll">
-        <div>
-            {% block content %}
-            {% endblock %}
-        </div>
+    <div>
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 </html>

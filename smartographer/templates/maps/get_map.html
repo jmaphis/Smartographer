@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="map_output">
+        <table>
+            {% for row in current_map %}
+                <tr>
+                {% for tile in row %}
+                    <td>{{ tile|safe }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% for button_tag in tag_list %}
+        {{ button_tag|safe }}
+    {% endfor %}
+    <form method="post">
+        <label for="password">Map Name (optional)</label>
+        <input name="mapname" id="mapname" required>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

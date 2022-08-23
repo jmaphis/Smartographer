@@ -13,7 +13,6 @@ class MapManager():
         self.height = height
         self.args = args
 
-
     def get_map(self, type):
         if type == 'cave':
             new_map = Cave(self.width, self.height, 750)

@@ -7,7 +7,7 @@ label {
     color: red;
 }
 body {
-    background-color: black;
+    background-color: white;
 }
 /* dsvbodysdf {
     font-size: 100%;
@@ -24,7 +24,7 @@ body {
     background-size: 100%;
     position: fixed;
 }
-h1 {
+#logo {
     background-color: midnightblue;
     margin-top: 0px;
     max-width: 33vw;
@@ -48,6 +48,9 @@ table, tr, td {
     padding: 0px;
     padding: 0.5px 0.5px 0px 0px;
     border-spacing: 0;
+}
+#map_output {
+    background-color: black;
 }
 .tile {
     width: 0.5vw;
