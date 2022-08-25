@@ -2,16 +2,18 @@
 # The cave object creates a 2 dimensional array of 1s and 0s, which
 # represent floor and wall tiles in a cave, respectively.
 # Uses a "Random Walk" style algorithm.
-import random
+from smartographer.utilities.seedmanager import SeedManager
 
 
 class Cave:
 
     # generates a cave map using the 'Random Walk' technique
-    def __init__(self, grid_width: int, grid_height: int, cave_size: int, centered=False):
+    def __init__(self, grid_width: int, grid_height: int, cave_size: int, 
+                                    seed: SeedManager, centered=False):
         self.grid_width = grid_width
         self.grid_height = grid_height
         self.cave_size = cave_size
+        self.seed = seed
 
         self.matrix = []
         for x in range(self.grid_width):
@@ -46,16 +48,16 @@ class Cave:
 
         while steps < self.cave_size:
             # pick a random direction and adjust the walker's position
-            axis = random.choice(('x', 'y'))
+            axis = self.seed.choice(('x', 'y'))
 
             if axis == 'x':
-                roll = random.randrange(self.grid_width)
+                roll = self.seed.randrange(self.grid_width)
                 if roll < walker['x']:
                     walker['x'] -= 1
                 else:
                     walker['x'] += 1
             if axis == 'y':
-                roll = random.randrange(self.grid_height)
+                roll = self.seed.randrange(self.grid_height)
                 if roll < walker['y']:
                     walker['y'] -= 1
                 else:
@@ -76,7 +78,7 @@ class Cave:
 
         while steps < self.cave_size:
             # pick a random direction and adjust the walker's position
-            direction = random.choice(directions)
+            direction = self.seed.choice(directions)
             if self.valid_step(walker, direction):
 
                 if direction == 'left':

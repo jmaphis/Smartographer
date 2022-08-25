@@ -14,9 +14,6 @@
     {% for button_tag in tag_list %}
         {{ button_tag|safe }}
     {% endfor %}
-    <form method="post">
-        <label for="password">Map Name (optional)</label>
-        <input name="mapname" id="mapname" required>
-        <input type="submit" value="Save">
-    </form>
+    {% block save_input %}
+    {% endblock %}
 {% endblock %}

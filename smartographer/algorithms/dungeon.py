@@ -1,19 +1,21 @@
 # A dungeon generation algorithm by James Maphis
 # The dungeon object creates a 2 dimensional array of 1s and 0s, which
 # represent floor and wall tiles in a dungeon, respectively.
-import random
+from smartographer.utilities.seedmanager import SeedManager
 
 
 class Dungeon():
 
     # Generates a dungeon in the style of classic roguelike games
     def __init__(self, width: str, height: int,
-        room_size_range: tuple[int, int], room_count: int):
+                room_size_range: tuple[int, int], 
+                room_count: int, seed: SeedManager):
 
         self.width = width
         self.height = height
         self.room_size_range = room_size_range
         self.room_count = room_count
+        self.seed = seed
 
         self.room_list = []
         self.hall_list = []
@@ -30,16 +32,16 @@ class Dungeon():
         while len(self.room_list) < self.room_count:
 
             # get a width and height for the room
-            room_width = (random.randint(self.room_size_range[0], 
+            room_width = (self.seed.randint(self.room_size_range[0], 
                                         self.room_size_range[1]))
-            room_height = (random.randint(self.room_size_range[0], 
+            room_height = (self.seed.randint(self.room_size_range[0], 
                                         self.room_size_range[1]))
             # get an x and y coords for the left and top sides, respectively
-            left = random.randint(0, self.width - room_width)
-            top = random.randint(0, self.height - room_height)
+            left = self.seed.randint(0, self.width - room_width)
+            top = self.seed.randint(0, self.height - room_height)
             # create a room object from the above values
             new_room = Room(left, (left + room_width), 
-                        top, (top + room_height))
+                        top, (top + room_height), self.seed)
                 
             if len(self.room_list) != 0:
                 for checks, room in enumerate(self.room_list):
@@ -66,7 +68,7 @@ class Dungeon():
         else:
             step_y = -1
 
-        start_direction = random.choice(('horizontal', 'vertical'))
+        start_direction = self.seed.choice(('horizontal', 'vertical'))
         if start_direction == 'horizontal':
             for tile in range(start_coords[0], end_coords[0], step_x):
                 # moving left/right
@@ -101,13 +103,15 @@ class Dungeon():
 
 class Room():
 
-    def __init__(self, left: int, right: int, top: int, bottom: int):
+    def __init__(self, left: int, right: int, top: int, 
+                       bottom: int, seed: SeedManager):
         self.left = left
         self.right = right
         self.top = top
         self.bottom = bottom
         self.width = self.right - self.left
         self.height = self.bottom - self.top
+        self.seed = seed
 
     def center(self):
         # returns a list  containing the left and right
@@ -135,8 +139,8 @@ class Room():
     def random_coords(self):
         # get a tuple of x and y coordinates for a random point within the room
         coord_tuple = (
-        (random.randrange(self.left, self.right)),
-        (random.randrange(self.top, self.bottom)))
+        (self.seed.randint(self.left, self.right)),
+        (self.seed.randint(self.top, self.bottom)))
         return coord_tuple
 
                 

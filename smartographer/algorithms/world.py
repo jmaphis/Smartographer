@@ -3,7 +3,7 @@
 # represent water and land tiles on a world map, respectively.
 # Uses cellular automata to turn a random distribution of "land" and
 # "water" into oceans and land masses.
-import random
+from smartographer.utilities.seedmanager import SeedManager
 from copy import deepcopy
 
 
@@ -11,12 +11,15 @@ class World():
 
     # Generates a world map using cellular automata
     def __init__(self, grid_width: int, grid_height: int,
-                 density: int, smoothing=2):
+                 density: int, seed: SeedManager, smoothing=2):
 
         self.grid_width = grid_width
         self.grid_height = grid_height
         self.density = density
         self.smoothing = smoothing
+        self.seed = seed
+        print('world')
+        print(self.seed.get_start_seed())
 
     def generate(self):
 
@@ -27,7 +30,7 @@ class World():
             for y in range(self.grid_height):
                 if x not in (0, self.grid_width) and\
                         y not in (0, self.grid_height):
-                    roll = random.randint(0, 100)
+                    roll = self.seed.randint(0, 100)
                     if roll < self.density:
                         column.append(1)
                     else:

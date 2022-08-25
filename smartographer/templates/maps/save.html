@@ -1,6 +1,6 @@
-{% extends 'get_map.html' %}
-
-{% block save_input %}
+{% extends 'maps/get_map.html' %}
+{% block content %}
+    <div>{{ super() }}</div>
     <form method="post">
         <label for="password">Map Name</label>
         <input name="mapname" id="mapname" required>

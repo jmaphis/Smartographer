@@ -13,6 +13,6 @@ CREATE TABLE map (
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     name TEXT NOT NULL,
     type TEXT NOT NULL,
-    map INTEGER NOT NULL,
+    seed INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
