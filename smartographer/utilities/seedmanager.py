@@ -5,14 +5,9 @@ import random
 
 
 class SeedManager():
-    def __init__(self, seed=None):
-        print('seedmanager')
-        print(seed)
-        if seed:
-            self.start_seed = seed
-        else:
-            self.start_seed = random.randrange(9999999)
-        self.current_seed = self.start_seed
+    def __init__(self, seed):
+        self.start_seed = seed
+        self.current_seed =seed
 
     def set_start_seed(self, seed: int):
         self.start_seed = seed

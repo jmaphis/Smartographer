@@ -8,7 +8,7 @@ from copy import deepcopy
 class MapManager():
     # handles the creation of maps, and fills their matrices with html
 
-    def __init__(self, width, height, args=None, seed=None, style='normal'):
+    def __init__(self, width, height, seed, args=None, style='normal'):
         self.style = style
         self.width = width
         self.height = height
@@ -21,8 +21,6 @@ class MapManager():
         if type == 'dungeon':
             new_map = Dungeon(self.width, self.height, (9, 15), 6, self.seed)
         if type == 'world':
-            print('mapmanager')
-            print(self.seed.get_start_seed())
             new_map = World(self.width, self.height, 40, self.seed)
 
         new_map.generate()
