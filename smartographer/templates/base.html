@@ -5,26 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Tangerine|UnifrakturMaguntia">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Tangerine|UnifrakturMaguntia|Benne">
+    <img src="assets/old-map.jpg" alt="Nautical Chart">
+    <img src="assets/wood_grain.jpg" alt="Wood">
+    <img src="assets/map-scroll.png" alt="Map Scroll">
     <title>Smartographer</title>
-    <nav>
+    <header>
         <h1><a id="logo" href="{{ url_for('index') }}">smartographer</a></h1>
-        {% block section_title %}
-        {% endblock %}
+    </header>
+    {% block section_title %}
+    {% endblock %}
+    <div class="header-right">
         {% if g.user %}
-            {{ g.user['username'] }}
+            <div class="username">{{ g.user['username'] }}</div>
             <a href="{{ url_for('auth.logout') }}">Log Out</a>
         {% else %}
             <a href="{{ url_for('auth.register') }}">Register</a>
             <a href="{{ url_for('auth.login') }}">Log In</a>
         {% endif %}
-        <a href="{{ url_for('maps.load') }}">Load Map</a>
-    </nav>
+        <div id="border-fill"></div>
+    </div>
 </head>
 <body>
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

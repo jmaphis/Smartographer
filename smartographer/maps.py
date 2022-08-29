@@ -7,15 +7,15 @@ from flask import Blueprint, render_template, session, redirect, url_for, reques
 
 from random import randrange
 
+SEED_LIMIT = 9999999
+
 bp = Blueprint('maps', __name__, url_prefix='/maps')
 
 def get_tag_list(type):
     # creates a list of anchor tags, starting with the refresh button
     refresh_url = url_for('maps.refresh_map', **{'type': type})
-    save_url = url_for('maps.save', **{'type': type})
     tag_list = []
     tag_list.append('<a href="' + refresh_url + '">Refresh</a>')
-    tag_list.append('<a href="' + save_url + '">Save</a>')
     # adds anchor tags to the list for the other maps
     for other in ['cave', 'dungeon', 'world']:
         if other != type:
@@ -23,10 +23,14 @@ def get_tag_list(type):
             tag_list.append(
                 '<a href="' + map_url + '">' + other.capitalize() + ' Map</a>'
                 )
+    save_url = url_for('maps.save', **{'type': type})
+    tag_list.append('<a href="' + save_url + '">Save</a>')
+    #load_url = url_for("maps.load")
+    #tag_list.append('<a href="' + load_url +'">Load Map</a>')
     return tag_list
 
 def generate_seed():
-    seed = randrange(9999999)
+    seed = randrange(SEED_LIMIT)
     return seed
 
 @bp.route('/<type>', methods=('GET', 'POST'))
@@ -34,9 +38,9 @@ def get_map(type):
     type = escape(type)
     # creates a list of anchor tags, starting with the refresh button
     tag_list = get_tag_list(type)
-    if not session[type + '_seed']:
-        session[type + '_seed'] = generate_seed()
-        print(session[type + '_seed'])
+    if not session.get(type + '_seed'):
+        seed = generate_seed()
+        return redirect(url_for('maps.set_seed', type=type, seed=seed))
     manager = MapManager(60, 60, session[type + '_seed'])
     current_map = manager.get_map(type)
     session[type + '_map'] = current_map

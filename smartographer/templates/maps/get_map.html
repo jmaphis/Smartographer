@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div id="map_output">
-        <table>
-            {% for row in current_map %}
-                <tr>
-                {% for tile in row %}
-                    <td>{{ tile|safe }}</td>
+    <nav class="sidebar">
+        {% for button_tag in tag_list %}
+            {{ button_tag|safe }}<br><br>
+        {% endfor %}
+        <a href="{{ url_for('maps.load') }}">Load Map</a>
+        {% block save_input %}
+        {% endblock %}
+    </nav>
+    <main>
+        <div id="map-scroll">
+            <table id="map">
+                {% for row in current_map %}
+                    <tr>
+                    {% for tile in row %}
+                        <td>{{ tile|safe }}</td>
+                    {% endfor %}
+                    </tr>
                 {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
-    {% for button_tag in tag_list %}
-        {{ button_tag|safe }}
-    {% endfor %}
-    {% block save_input %}
-    {% endblock %}
+            </table>
+        </div>
+    </main>
 {% endblock %}
