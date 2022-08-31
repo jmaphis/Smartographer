@@ -3,6 +3,24 @@
 *::after {
     box-sizing: border-box;
 }
+#logo {
+    position: fixed;
+    display: inline;
+    z-index: 5;
+    top: 0vw;
+    background-color: rgb(38, 29, 24);
+    margin-top: 0px;
+    max-width: 33vw;
+    padding: .2vw;
+    box-shadow: -0.6vw 0.6vw 0.8vw black;
+    font-family: UnifrakturMaguntia, Tangerine, Garamond;
+    font-size: 4vw;
+    text-align: center;
+    color: blanchedalmond;
+    text-shadow: -0.25vw 0.25vw 0.3vw black;
+    border: .4vw solid rgb(240, 205, 102);
+    border-radius: 2em;
+}
 .username {
     color: rgb(45, 22, 9);
     background-color: hsla(33, 61%, 80%, 0.589);
@@ -10,6 +28,7 @@
 body {
     margin: 0%;
     padding: 0%;
+    font-family: Benne;
     display: inline-grid;
     overflow: hidden;
     width: 100vw;
@@ -17,8 +36,10 @@ body {
     grid-template-columns: 90vw 10vw;
     grid-template-rows: 11vh 79vh 10vh;
     font-size: 100%;
-    background-color: midnightblue;
+    background-color: black;
     background: url(assets/old-map.jpg);
+    /* background-repeat: no-repeat;
+    background-size: cover; */
     grid-template-areas: 
         "header header-right"
         "main sidebar"
@@ -26,17 +47,8 @@ body {
 }
 header {
     grid-area: header;
-    /*position: fixed;
-    display: block;
-    margin: auto;
-    width: auto;
-    height: inherit;
-    box-sizing: border-box;
-     grid-column: 1 / 2;
-    grid-row: 1 / 2; 
-    color: midnightblue;*/
     z-index: 5;
-    border-bottom: 0.5vw solid black;
+    /*border-bottom: 0.5vw solid black;*/
     box-shadow: -0.6vw 0.6vw 0.8vw black;
 }
 #load {
@@ -56,64 +68,53 @@ header {
     align-items: stretch;
     right: 0;*/
     text-align: center;
-    /*border-left: 0.3vw solid rgb(240, 205, 102);*/
+    /*border-left: 0.3vw dashed black;
+    border-bottom: 0.3vw dashed black;
+    border-left: 0.3vw solid rgb(240, 205, 102);*/
 }
-#border-fill {
-    position: relative;
-    grid-area: header-right;
-    left: 0;
-    bottom: 0;
-    height: .5vw;
-    width: .5vw;
-    background-color: black;
+.header-right>a {
+    margin-top: 0vw;
+    margin-bottom: 0.25vw;
 }
 main {
+    display: grid;
     grid-area: main;
     position: relative;
     height: 100%;
+    background-color: black;
     background: url(assets/wood_grain.jpg) center fixed;
+    background-repeat: repeat-y;
     background-size: cover;
     /* background-image: url('assets/wood_grain.jpg'); 
     background-repeat: no-repeat;
     background-attachment: fixed;*/
 }
 .sidebar {
+    margin-top: 3vw;
     grid-area: sidebar;
-    display: block;
-    border-left: 0.5vw solid black;
+    z-index: 5;
+    /*border-left: 0.5vw solid black;*/
     box-shadow: -0.6vw 0.6vw 0.8vw black;
 }
-#map-scroll {
+#scroll {
+    position: absolute;
+    grid-area: main;
     background: url(assets/map-scroll.png);
-    height: auto;
-    width: auto;
+    background-repeat: no-repeat;
+    background-size: 50vw 85vh;
+    scale: 1.1;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 50%;
+    margin-right: 50%;
 }
 #map {
     position: absolute;
     top: 50%;
-    bottom: 50%;
-    margin: -25% 0 0 20vw;
-    z-index: 1;
+    left: 50%;
+    margin-top: -25%;
+    margin-left: -25%;
     background-color: black;
-
-}
-#logo {
-    position: fixed;
-    display: inline;
-    z-index: 5;
-    top: 0vw;
-    background-color: rgb(45, 22, 9);
-    margin-top: 0px;
-    max-width: 33vw;
-    padding: .2vw;
-    box-shadow: -0.6vw 0.6vw 0.8vw black;
-    font-family: UnifrakturMaguntia, Tangerine, Garamond;
-    font-size: 4vw;
-    text-align: center;
-    color: blanchedalmond;
-    text-shadow: -0.25vw 0.25vw 0.3vw black;
-    border: .4vw solid rgb(240, 205, 102);
-    border-radius: 2em;
 }
 table, tr, td {
     border: 0px;
@@ -123,8 +124,8 @@ table, tr, td {
     border-spacing: 0;
 }
 .tile {
-    width: 0.75vw;
-    height: 0.75vw;
+    width: 1vh;
+    height: 1vh;
     margin: 0%;
     z-index: 1;
 }
@@ -143,7 +144,7 @@ table, tr, td {
 .map-lines {
     border: 1px solid black;
 }
-a {
+a, input[type="submit"] {
     font-family: Benne;
     color: blanchedalmond;
     padding: .5vw;
@@ -154,17 +155,96 @@ a {
     box-shadow: -0.2vw 0.2vw 0.3vw black;
     margin: 1vw;
 }
-a:link, a:visited {
-    background-color: rgb(45, 22, 9);
+a:link, a:visited, input[type="submit"] {
+    background-color: rgb(38, 29, 24);
     display: block;
-    margin: auto;
 }
 a:hover {
     /*background-color: rgb(47, 47, 214);*/
+    background-color: rgb(38, 29, 24);
+}
+a:hover:not(#logo), input[type="submit"]:hover {
     transform: scale(1.1);
-    background-color: rgb(45, 22, 9);
+    transition: transform ease 200ms;
 }
 a:active {
     /*background-color: rgb(47, 47, 214);*/
-    background-color: rgb(94, 49, 23);
+    background-color: rgb(38, 29, 24);
+}
+input[type="submit"] {
+    font-family: inherit;
+    font-size: 100%;
+    width: 80%;
+}
+form>input:not(input[type="submit"]) {
+    font-family: inherit;
+    font-size: 100%;
+    background-color: hsla(0, 0%, 100%, 0.432);
+    width: 8vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    border-radius: 4px;
+}
+form>label {
+    font-family: inherit;
+    font-size: 100%;
+    margin-left: 1vw;
+}
+#save-details {
+    display: hidden;
+}
+#save-details:hover {
+    visibility: visible;
+}
+#welcome {
+    font-size: 1rem;
+    border: 1rem solid black;
+    border-image-source: url(assets/map-scroll.png);
+    border-image-slice: 45% 30%;
+    border-image-repeat: stretch;
+    border-image-width: 5;
+    border-image-outset: 2rem 2rem;
+    color: black;
+    grid-area: main;
+    display: inline;
+    margin: 25vw;
+    margin-top: 15vw;
+    padding: 3vh 4vw 3vh 4vw;
+    text-align: justify;
+    background-color: blanchedalmond;
+    scale: 1.5;
+}
+p {
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+.tall {
+    display: none;
+}
+.wide {
+    display: inline;
+}
+.auth {
+    position: relative;
+    font-size: larger;
+    grid-area: main;
+    background-color: blanchedalmond;
+    margin-right: auto;
+    margin-bottom: auto;
+    border: 1rem solid black;
+}
+.auth>label {
+    display: block;
+    margin-top: 1vw;
+}
+.auth>input[type="submit"] {
+    grid-area: main;
+    margin-left: 4.5vw;
+    margin-top: 2vw;
+    max-width: 8vw;
+    position: relative;
+}
+.auth>input:not(input[type="submit"]){
+    width: 16vw;
 }

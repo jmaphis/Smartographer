@@ -11,11 +11,12 @@ SEED_LIMIT = 9999999
 
 bp = Blueprint('maps', __name__, url_prefix='/maps')
 
-def get_tag_list(type):
+def get_tag_list(type=None, is_map=False):
     # creates a list of anchor tags, starting with the refresh button
-    refresh_url = url_for('maps.refresh_map', **{'type': type})
     tag_list = []
-    tag_list.append('<a href="' + refresh_url + '">Refresh</a>')
+    if is_map:
+        refresh_url = url_for('maps.refresh_map', **{'type': type})
+        tag_list.append('<a href="' + refresh_url + '">Refresh</a>')
     # adds anchor tags to the list for the other maps
     for other in ['cave', 'dungeon', 'world']:
         if other != type:
@@ -23,10 +24,17 @@ def get_tag_list(type):
             tag_list.append(
                 '<a href="' + map_url + '">' + other.capitalize() + ' Map</a>'
                 )
-    save_url = url_for('maps.save', **{'type': type})
-    tag_list.append('<a href="' + save_url + '">Save</a>')
-    #load_url = url_for("maps.load")
-    #tag_list.append('<a href="' + load_url +'">Load Map</a>')
+
+    load_url = url_for('maps.load')
+    tag_list.append('<a href="' + load_url + '">Load Map</a>')
+    if is_map:
+        tag_list.append('''
+            <form method="post">
+                <input type="submit" value="Save Map">
+                <label for="mapname">Map Name:</label>
+                <input name="mapname" id="mapname" required>
+            </form>
+        ''')
     return tag_list
 
 def generate_seed():
@@ -36,8 +44,17 @@ def generate_seed():
 @bp.route('/<type>', methods=('GET', 'POST'))
 def get_map(type):
     type = escape(type)
+    if request.method == 'POST':
+        name = escape(request.form['mapname'])
+        db = get_db()
+        db.execute(
+            "INSERT INTO map (seed, type, name, user_id) VALUES (?, ?, ?, ?)",
+            (session[type + '_seed'], type, name, session['user_id'])
+        )
+        db.commit()
+        return redirect(url_for('maps.get_map', type=type))
     # creates a list of anchor tags, starting with the refresh button
-    tag_list = get_tag_list(type)
+    tag_list = get_tag_list(type=type, is_map=True)
     if not session.get(type + '_seed'):
         seed = generate_seed()
         return redirect(url_for('maps.set_seed', type=type, seed=seed))
@@ -53,28 +70,10 @@ def refresh_map(type):
     seed = generate_seed()
     return redirect(url_for('maps.set_seed', type=type, seed=seed))
 
-@bp.route('/<type>/save', methods=('GET', 'POST'))
-@login_required
-def save(type):
-    type = escape(type)
-    if request.method == 'POST':
-        name = escape(request.form['mapname'])
-        db = get_db()
-        db.execute(
-            "INSERT INTO map (seed, type, name, user_id) VALUES (?, ?, ?, ?)",
-            (session[type + '_seed'], type, name, session['user_id'])
-        )
-        db.commit()
-        return redirect(url_for('maps.get_map', type=type))
-    get_map(type)
-    current_map = session[type + '_map']
-    tag_list =  get_tag_list(type)
-    return render_template('maps/save.html', current_map=current_map,
-                                        tag_list=tag_list, type=type)
-
 @bp.route('/load', methods=('GET','POST'))
 @login_required
 def load():
+    tag_list = get_tag_list()
     if request.method == ['DELETE']:
         db = get_db()
         db.execute('DELETE FROM map WHERE id = ?', (id,))
@@ -85,7 +84,7 @@ def load():
             'SELECT * FROM map WHERE user_id = ?', (user_id,)
         ).fetchall()
 
-    return render_template('maps/load.html', loaded_maps=loaded_maps)
+    return render_template('maps/load.html', loaded_maps=loaded_maps, tag_list=tag_list)
 
 @bp.route('/<type>/<seed>')
 def set_seed(type, seed):

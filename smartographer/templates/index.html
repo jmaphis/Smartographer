@@ -4,9 +4,22 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
-        <li><a href="{{ url_for('maps.get_map', **{'type': 'cave'}) }}">Cave Map</a>
-        <li><a href="{{ url_for('maps.get_map', **{'type': 'dungeon'}) }}">Dungeon Map</a>
-        <li><a href="{{ url_for('maps.get_map', **{'type': 'world'}) }}">World Map</a>
-    </ul>
+<div id="welcome">
+    <p>
+        Welcome to Smartographer, your tile-based map generation companion!
+        To get started, select one of the map styles
+    <span class="wide">
+        to the right.
+    </span>
+    <span class="tall">
+        below.
+    </span>
+        You can use the refresh button to generate a new map of that type.
+        Once you've found a map that you like, 
+        feel free to log in, or register if you're a returning adventurer, 
+        and save it to our map archive!
+        (Please note: smartographer, in it's current state, is a proof of concept. 
+        we cannot guarantee that user accounts and maps will not be deleted)
+    </p>
+</div>
 {% endblock %}

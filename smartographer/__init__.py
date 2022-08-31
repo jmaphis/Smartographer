@@ -1,6 +1,8 @@
-import os
+from smartographer.maps import get_tag_list
 
 from flask import Flask, render_template
+
+import os
 
 
 def create_app(test_config=None):
@@ -22,7 +24,8 @@ def create_app(test_config=None):
 
     @app.route('/')
     def index():
-        return render_template('index.html')
+        tag_list = get_tag_list(is_map=False)
+        return render_template('index.html', tag_list=tag_list)
 
     from . import db
     db.init_app(app)

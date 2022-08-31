@@ -37,6 +37,7 @@ def register():
         else:
             flash(error)
 
+    tag_list = get_tag_list()
     return render_template('auth/register.html')
 
 @bp.route('/login', methods=('GET', 'POST'))
@@ -62,6 +63,7 @@ def login():
         else:
             flash(error)
 
+    tag_list = get_tag_list()
     return render_template('auth/login.html')
 
 @bp.before_app_request
