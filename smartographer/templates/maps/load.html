@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>saved maps:</h1>
-    {% for map in loaded_maps %}
-        <a href="{{ url_for('maps.set_seed', **{'type': map['type'], 'seed': map['seed']}) }}">
-            {{ map['name'] }}
-        </a>
-        {{ map['type'] }} | {{ map['created'] }}
-        <form action="{{ url_for('maps.delete', **{'id': map['id']}) }}" method="post">
-            <input type="submit" value="Delete" onclick="return confirm('Are you sure?')">
-        </form>
-        <br><br>
-    {% endfor %}
+    <div id="load-list">
+        {% for map in loaded_maps %}
+            <div class="loaded-map">
+                <a href="{{ url_for('maps.set_seed', **{'type': map['type'], 'seed': map['seed']}) }}">
+                    {{ map['name'] }}
+                </a>
+                <span class="divider">{{ map['type'] }} | {{ map['created'] }}</span>
+                <form action="{{ url_for('maps.delete', **{'id': map['id']}) }}" method="post">
+                    <input class="delete-button" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

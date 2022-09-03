@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-        <table id="map">
-            {% for row in current_map %}
-                <tr>
-                {% for tile in row %}
-                    <td>{{ tile|safe }}</td>
-                {% endfor %}
-                </tr>
+    <table id="map">
+        {% for row in current_map %}
+            <tr>
+            {% for tile in row %}
+                <td>{{ tile|safe }}</td>
             {% endfor %}
-        </table>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

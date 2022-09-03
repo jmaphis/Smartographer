@@ -14,6 +14,7 @@ bp = Blueprint('maps', __name__, url_prefix='/maps')
 def get_tag_list(type=None, is_map=False):
     # creates a list of anchor tags, starting with the refresh button
     tag_list = []
+    tag_list.append('<div class="nav-tags">')
     if is_map:
         refresh_url = url_for('maps.refresh_map', **{'type': type})
         tag_list.append('<a href="' + refresh_url + '">Refresh</a>')
@@ -22,15 +23,16 @@ def get_tag_list(type=None, is_map=False):
         if other != type:
             map_url = url_for('maps.get_map', **{'type': other})
             tag_list.append(
-                '<a href="' + map_url + '">' + other.capitalize() + ' Map</a>'
+                '<a href="' + map_url + '">' + other.capitalize() + '</a>'
                 )
 
     load_url = url_for('maps.load')
-    tag_list.append('<a href="' + load_url + '">Load Map</a>')
+    tag_list.append('<a href="' + load_url + '">Load</a>')
     if is_map:
         tag_list.append('''
-            <form method="post">
-                <input type="submit" value="Save Map">
+            </div>
+            <form class="save-form" method="post">
+                <input type="submit" value="Save">
                 <label for="mapname">Map Name:</label>
                 <input name="mapname" id="mapname" required>
             </form>

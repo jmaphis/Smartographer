@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Tangerine|UnifrakturMaguntia|Benne">
     <img src="assets/old-map.jpg" alt="Nautical Chart">
-    <img src="assets/wood_grain.jpg" alt="Wood">
-    <img src="assets/map-scroll.png" alt="Map Scroll">
+    <img src="assets/wood_grain-wide.jpg" alt="Wood">
+    <img src="assets/map-border.png" alt="Map Scroll">
     <title>Smartographer</title>
     <header>
         <h1><a id="logo" href="{{ url_for('index') }}">smartographer</a></h1>
@@ -19,6 +19,7 @@
 <body>
     <div class="header-right">
         {% if g.user %}
+            <br>
             <div class="username">{{ g.user['username'] }}</div>
             <a href="{{ url_for('auth.logout') }}">Log Out</a>
         {% else %}

@@ -5,16 +5,14 @@
 }
 #logo {
     position: fixed;
-    display: inline;
-    z-index: 5;
     top: 0vw;
     background-color: rgb(38, 29, 24);
-    margin-top: 0px;
-    max-width: 33vw;
+    margin-top: 0.5vh;
     padding: .2vw;
     box-shadow: -0.6vw 0.6vw 0.8vw black;
     font-family: UnifrakturMaguntia, Tangerine, Garamond;
-    font-size: 4vw;
+    font-size: 3rem;
+    width: 20rem;
     text-align: center;
     color: blanchedalmond;
     text-shadow: -0.25vw 0.25vw 0.3vw black;
@@ -31,15 +29,14 @@ body {
     font-family: Benne;
     display: inline-grid;
     overflow: hidden;
-    width: 100vw;
-    height: 100vw;
+
     grid-template-columns: 90vw 10vw;
     grid-template-rows: 11vh 79vh 10vh;
     font-size: 100%;
     background-color: black;
-    background: url(assets/old-map.jpg);
-    /* background-repeat: no-repeat;
-    background-size: cover; */
+    background-image: 
+        linear-gradient(to bottom left, rgba(38, 29, 24, 0), rgb(38, 29, 24)),
+        url(assets/old-map.jpg); 
     grid-template-areas: 
         "header header-right"
         "main sidebar"
@@ -48,7 +45,6 @@ body {
 header {
     grid-area: header;
     z-index: 5;
-    /*border-bottom: 0.5vw solid black;*/
     box-shadow: -0.6vw 0.6vw 0.8vw black;
 }
 #load {
@@ -60,21 +56,7 @@ header {
 }
 .header-right {
     grid-area: header-right;
-    /*position: fixed;
-    display: block;
-    margin: 0 auto;
-    background-size: 100%;
-    justify-items: stretch;
-    align-items: stretch;
-    right: 0;*/
     text-align: center;
-    /*border-left: 0.3vw dashed black;
-    border-bottom: 0.3vw dashed black;
-    border-left: 0.3vw solid rgb(240, 205, 102);*/
-}
-.header-right>a {
-    margin-top: 0vw;
-    margin-bottom: 0.25vw;
 }
 main {
     display: grid;
@@ -82,39 +64,38 @@ main {
     position: relative;
     height: 100%;
     background-color: black;
-    background: url(assets/wood_grain.jpg) center fixed;
-    background-repeat: repeat-y;
+    background: url(assets/wood_grain-wide.jpg) right bottom fixed;
+    background-repeat: repeat-x;
     background-size: cover;
-    /* background-image: url('assets/wood_grain.jpg'); 
-    background-repeat: no-repeat;
-    background-attachment: fixed;*/
+    overflow-y: auto;
 }
 .sidebar {
     margin-top: 3vw;
+    min-width: 5rem;
     grid-area: sidebar;
     z-index: 5;
-    /*border-left: 0.5vw solid black;*/
     box-shadow: -0.6vw 0.6vw 0.8vw black;
 }
 #scroll {
     position: absolute;
     grid-area: main;
-    background: url(assets/map-scroll.png);
-    background-repeat: no-repeat;
-    background-size: 50vw 85vh;
-    scale: 1.1;
     bottom: 0;
     right: 0;
     margin-bottom: 50%;
     margin-right: 50%;
 }
 #map {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -25%;
-    margin-left: -25%;
+    position: relative;
+    margin: auto;
+    padding: 3vh;
     background-color: black;
+    border: 1rem solid black;
+    border-image-source: url(assets/map-border.png); 
+    border-image-slice: 45% 30%;
+    border-image-repeat: stretch;
+    border-image-width: 9vh;
+    border-image-outset: 4vh 4vh;
+    z-index: 0;
 }
 table, tr, td {
     border: 0px;
@@ -147,13 +128,18 @@ table, tr, td {
 a, input[type="submit"] {
     font-family: Benne;
     color: blanchedalmond;
-    padding: .5vw;
     border: 0.3vw solid rgb(240, 205, 102);
     border-radius: 2em;
     text-align: center;
     text-decoration: none;
     box-shadow: -0.2vw 0.2vw 0.3vw black;
     margin: 1vw;
+    transition: transform cubic-bezier(.68,.01,.61,1.61) 250ms, background-color 250ms cubic-bezier(.68,.01,.61,1.61);
+}
+a:not(#logo), input[type="submit"] {
+    line-height: 2.5rem;
+    padding: auto;
+    max-height: 2.5rem;
 }
 a:link, a:visited, input[type="submit"] {
     background-color: rgb(38, 29, 24);
@@ -164,8 +150,7 @@ a:hover {
     background-color: rgb(38, 29, 24);
 }
 a:hover:not(#logo), input[type="submit"]:hover {
-    transform: scale(1.1);
-    transition: transform ease 200ms;
+    transform: scale(1.2);
 }
 a:active {
     /*background-color: rgb(47, 47, 214);*/
@@ -190,16 +175,22 @@ form>label {
     font-size: 100%;
     margin-left: 1vw;
 }
-#save-details {
-    display: hidden;
+.delete-button:hover {
+    background-color: darkred;
 }
-#save-details:hover {
-    visibility: visible;
+.header-right a {
+    height: 2rem;
+    line-height: 2rem !important;
+    margin-top: 0vw;
+    margin-bottom: 1vh;
+    min-width: 4rem;
+    margin-right: 1vw;
+    overflow-x: auto;
 }
 #welcome {
     font-size: 1rem;
     border: 1rem solid black;
-    border-image-source: url(assets/map-scroll.png);
+    border-image-source: url(assets/map-border.png);
     border-image-slice: 45% 30%;
     border-image-repeat: stretch;
     border-image-width: 5;
@@ -211,8 +202,9 @@ form>label {
     margin-top: 15vw;
     padding: 3vh 4vw 3vh 4vw;
     text-align: justify;
-    background-color: blanchedalmond;
+    background-color: rgb(249, 233, 206);
     scale: 1.5;
+    border-radius: 5px;
 }
 p {
     white-space: normal;
@@ -229,10 +221,11 @@ p {
     position: relative;
     font-size: larger;
     grid-area: main;
-    background-color: blanchedalmond;
+    background-color: rgba(255, 235, 205, 0.5);
     margin-right: auto;
     margin-bottom: auto;
     border: 1rem solid black;
+    border-radius: 5px;
 }
 .auth>label {
     display: block;
@@ -247,4 +240,135 @@ p {
 }
 .auth>input:not(input[type="submit"]){
     width: 16vw;
+    background-color: hsla(0, 0%, 100%, 0);
+}
+#load-list {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns:  repeat(auto-fit, minmax(240px, 1fr));
+    margin: 10vh;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+.loaded-map {
+    background-color: rgba(255, 235, 205, 0.5);
+    position: relative;
+    border: 0.5rem solid rgb(38, 29, 24);
+    border-radius: 5px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-height: 20rem;
+    text-align: center;
+}
+.loaded-map .delete-button, .loaded-map>a {
+    display: grid;
+    max-width: 8vw;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.divider {
+    text-align: center;
+    margin: auto;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 500px) {
+    .tile {
+        width: 1vw;
+        height: 1vw;
+    }
+    body {
+        display: inline-grid;
+        grid-template-columns: 70vw 30vw;
+        grid-template-rows: 10vh 75vh 15vh;
+        font-size: 100%;
+        background-color: black;
+        background-image: 
+            linear-gradient(to left, rgba(38, 29, 24, 0), rgb(38, 29, 24)),
+            url(assets/old-map.jpg); 
+        grid-template-areas: 
+            "header header-right"
+            "main main"
+            "sidebar sidebar";
+    }
+    .nav-tags {
+        display: flex;
+        flex-direction: row;
+        margin-top: -2vh;
+        margin-bottom: 1vh;
+        grid-area: sidebar;
+        z-index: 5;
+    }
+    #logo {
+        font-size: 1.5rem;
+        width: 10rem;
+        margin-top: 1rem;
+        margin-left: 1.5rem;
+        scale: 1.25;
+    }
+    .header-right {
+        display: flex;
+        flex-direction: column;
+        grid-area: header-right;
+        text-align: center;
+        margin-right: 10vw;
+    }
+    .header-right>.username {
+        background: none;
+        margin-left: 5vw;
+    }
+    a:not(#logo), input[type="submit"] {
+        font-size: 4vw;
+        width: 25vw;
+        height: 2rem;
+        line-height: 2rem;
+        flex-grow: 1;
+        flex-wrap: wrap;
+    } 
+    .save-form {
+        border-top: 1px solid rgb(38, 29, 24);
+        padding: -10vh;
+        display: flex;
+        margin-top: -0.5vh;
+        flex-direction: row;
+        align-items: center;
+    }
+    .save-form input[type="submit"] {
+        max-width: 23vw;;
+    }
+    .header-right * {
+        width: 5vw;
+    }
+    .save-form #mapname {
+        width: 40vw;
+    }
+    .auth {
+        width: 66vw;
+        padding-left: 2vw;
+    }
+    .auth>input[type="submit"] {
+        margin-left: 4.5vw;
+        max-width: 30vw;
+    }
+    .auth>#username, .auth>#password {
+        width: 45vw;
+    }
+    #welcome {
+        font-size: .75rem;
+        padding: 0;
+        border-image-width: 5;
+        border-image-slice: 30% 30%;
+        border-image-outset: 0.5rem 2rem;
+        background-clip: content-box;
+    }
+    #load-list {
+        align-content: center;
+        padding: auto;
+        justify-content: center;
+    }
+    .loaded-map .delete-button, .loaded-map>a {
+
+        max-width: 25vw;
+    }
 }
