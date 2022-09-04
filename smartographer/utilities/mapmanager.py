@@ -5,6 +5,7 @@ from smartographer.utilities.seedmanager import SeedManager
 
 from copy import deepcopy
 
+
 class MapManager():
     # handles the creation of maps, and fills their matrices with html
 

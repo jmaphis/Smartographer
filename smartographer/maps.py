@@ -1,9 +1,12 @@
 from smartographer.utilities.mapmanager import MapManager
+from smartographer.utilities.taglist import get_tag_list
 from smartographer.db import get_db
 from smartographer.auth import login_required
 
 from markupsafe import escape
-from flask import Blueprint, render_template, session, redirect, url_for, request
+from flask import (
+    Blueprint, render_template, session, redirect, url_for, request
+)
 
 from random import randrange
 
@@ -11,39 +14,13 @@ SEED_LIMIT = 9999999
 
 bp = Blueprint('maps', __name__, url_prefix='/maps')
 
-def get_tag_list(type=None, is_map=False):
-    # creates a list of anchor tags, starting with the refresh button
-    tag_list = []
-    tag_list.append('<div class="nav-tags">')
-    if is_map:
-        refresh_url = url_for('maps.refresh_map', **{'type': type})
-        tag_list.append('<a href="' + refresh_url + '">Refresh</a>')
-    # adds anchor tags to the list for the other maps
-    for other in ['cave', 'dungeon', 'world']:
-        if other != type:
-            map_url = url_for('maps.get_map', **{'type': other})
-            tag_list.append(
-                '<a href="' + map_url + '">' + other.capitalize() + '</a>'
-                )
-
-    load_url = url_for('maps.load')
-    tag_list.append('<a href="' + load_url + '">Load</a>')
-    if is_map:
-        tag_list.append('''
-            </div>
-            <form class="save-form" method="post">
-                <input type="submit" value="Save">
-                <label for="mapname">Map Name:</label>
-                <input name="mapname" id="mapname" required>
-            </form>
-        ''')
-    return tag_list
 
 def generate_seed():
     seed = randrange(SEED_LIMIT)
     return seed
 
-@bp.route('/<type>', methods=('GET', 'POST'))
+
+@bp.route('/gen/<type>', methods=('GET', 'POST'))
 def get_map(type):
     type = escape(type)
     if request.method == 'POST':
@@ -63,8 +40,13 @@ def get_map(type):
     manager = MapManager(60, 60, session[type + '_seed'])
     current_map = manager.get_map(type)
     session[type + '_map'] = current_map
-    return render_template('maps/get_map.html', current_map=current_map, 
-                                            type=type, tag_list=tag_list)
+    return render_template(
+        'maps/get_map.html',
+        current_map=current_map,
+        type=type,
+        tag_list=tag_list
+        )
+
 
 @bp.route('/refresh_<type>')
 def refresh_map(type):
@@ -72,7 +54,8 @@ def refresh_map(type):
     seed = generate_seed()
     return redirect(url_for('maps.set_seed', type=type, seed=seed))
 
-@bp.route('/load', methods=('GET','POST'))
+
+@bp.route('/load', methods=('GET', 'POST'))
 @login_required
 def load():
     tag_list = get_tag_list()
@@ -86,12 +69,16 @@ def load():
             'SELECT * FROM map WHERE user_id = ?', (user_id,)
         ).fetchall()
 
-    return render_template('maps/load.html', loaded_maps=loaded_maps, tag_list=tag_list)
+    return render_template(
+        'maps/load.html', loaded_maps=loaded_maps, tag_list=tag_list
+        )
+
 
 @bp.route('/<type>/<seed>')
 def set_seed(type, seed):
     session[type + '_seed'] = seed
     return redirect(url_for('maps.get_map', type=type))
+
 
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required

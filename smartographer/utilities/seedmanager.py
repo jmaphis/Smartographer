@@ -1,4 +1,4 @@
-# seedmanager - a modified version of the random module, 
+# seedmanager - a modified version of the random module,
 # but based on one starting seed
 
 import random
@@ -7,7 +7,7 @@ import random
 class SeedManager():
     def __init__(self, seed):
         self.start_seed = seed
-        self.current_seed =seed
+        self.current_seed = seed
 
     def set_start_seed(self, seed: int):
         self.start_seed = seed
@@ -37,6 +37,7 @@ class SeedManager():
         roll = random.randint(lower, upper)
         self.update_current()
         return roll
+
 
 if __name__ == '__main__':
     pass

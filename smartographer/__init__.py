@@ -6,10 +6,10 @@ import os
 
 
 def create_app(test_config=None):
-    #create and configure the app
+    # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev', 
+        SECRET_KEY='dev',
         DATABASE=os.path.join(
             app.instance_path, 'smartographer.sqlite'
             ),
@@ -36,4 +36,4 @@ def create_app(test_config=None):
     from . import maps
     app.register_blueprint(maps.bp)
 
-    return app 
+    return app
