@@ -8,8 +8,8 @@ from smartographer.utilities.seedmanager import SeedManager
 class Cave:
 
     # generates a cave map using the 'Random Walk' technique
-    def __init__(self, grid_width: int, grid_height: int, cave_size: int, 
-                                    seed: SeedManager, centered=False):
+    def __init__(self, grid_width: int, grid_height: int, cave_size: int,
+                 seed: SeedManager, centered=False):
         self.grid_width = grid_width
         self.grid_height = grid_height
         self.cave_size = cave_size
@@ -20,7 +20,7 @@ class Cave:
             column = []
             for y in range(self.grid_height):
                 column.append(0)
-            self.matrix.append(column)      
+            self.matrix.append(column)
 
     def valid_step(self, walker, step):
         # checks if the next step is within list range

@@ -8,8 +8,8 @@ class Dungeon():
 
     # Generates a dungeon in the style of classic roguelike games
     def __init__(self, width: str, height: int,
-                room_size_range: tuple[int, int], 
-                room_count: int, seed: SeedManager):
+                 room_size_range: tuple[int, int],
+                 room_count: int, seed: SeedManager):
 
         self.width = width
         self.height = height
@@ -32,17 +32,17 @@ class Dungeon():
         while len(self.room_list) < self.room_count:
 
             # get a width and height for the room
-            room_width = (self.seed.randint(self.room_size_range[0], 
-                                        self.room_size_range[1]))
-            room_height = (self.seed.randint(self.room_size_range[0], 
-                                        self.room_size_range[1]))
+            room_width = (self.seed.randint(self.room_size_range[0],
+                          self.room_size_range[1]))
+            room_height = (self.seed.randint(self.room_size_range[0],
+                           self.room_size_range[1]))
             # get an x and y coords for the left and top sides, respectively
             left = self.seed.randint(0, self.width - room_width)
             top = self.seed.randint(0, self.height - room_height)
             # create a room object from the above values
-            new_room = Room(left, (left + room_width), 
-                        top, (top + room_height), self.seed)
-                
+            new_room = Room(left, (left + room_width),
+                            top, (top + room_height), self.seed)
+
             if len(self.room_list) != 0:
                 for checks, room in enumerate(self.room_list):
                     if new_room.collide(room):
@@ -57,7 +57,7 @@ class Dungeon():
 
     def get_hall_path(self, start_coords, end_coords):
 
-        # allows the hallways to generate backwards if the end point is 
+        # allows the hallways to generate backwards if the end point is
         # above or to the left of the start point by using a negative step
         if start_coords[0] <= end_coords[0]:
             step_x = 1
@@ -86,8 +86,8 @@ class Dungeon():
 
     def generate_halls(self):
 
-        self.room_list.sort(key=lambda room: 
-            room.center()[0] +room.center()[1])
+        self.room_list.sort(key=lambda room:
+                            room.center()[0] + room.center()[1])
         for index, room in enumerate(self.room_list):
             if room != self.room_list[-1]:
                 next_room = self.room_list[index - 1]
@@ -103,8 +103,8 @@ class Dungeon():
 
 class Room():
 
-    def __init__(self, left: int, right: int, top: int, 
-                       bottom: int, seed: SeedManager):
+    def __init__(self, left: int, right: int, top: int,
+                 bottom: int, seed: SeedManager):
         self.left = left
         self.right = right
         self.top = top
@@ -130,7 +130,7 @@ class Room():
         return False
 
     def draw(self, matrix):
-        # takes a 2d array as an argument and sets the value of any 
+        # takes a 2d array as an argument and sets the value of any
         # tiles within the room to one.
         for x in range(self.width):
             for y in range(self.height):
@@ -139,11 +139,11 @@ class Room():
     def random_coords(self):
         # get a tuple of x and y coordinates for a random point within the room
         coord_tuple = (
-        (self.seed.randint(self.left, self.right)),
-        (self.seed.randint(self.top, self.bottom)))
+            (self.seed.randint(self.left, self.right)),
+            (self.seed.randint(self.top, self.bottom)))
         return coord_tuple
 
-                
+
 if __name__ == '__main__':
     # generates and prints a matrix for testing purposes.
     # these numbers are a recommended default.
