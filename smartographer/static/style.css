@@ -64,7 +64,7 @@ main {
     position: relative;
     height: 100%;
     background-color: black;
-    background: url(assets/wood_grain-wide.jpg) right bottom fixed;
+    background: url(assets/wood-grain.jpg) right bottom fixed;
     background-repeat: repeat-x;
     background-size: cover;
     overflow-y: auto;
