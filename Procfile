@@ -1,1 +1,1 @@
-web: gunicorn --chdir ./smartographer app:app
+web: gunicorn app:app
