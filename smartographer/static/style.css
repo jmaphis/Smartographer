@@ -19,9 +19,9 @@
     border: .4vw solid rgb(240, 205, 102);
     border-radius: 2em;
 }
-.username {
+.username, .save-form>label {
     color: rgb(45, 22, 9);
-    background-color: hsla(33, 61%, 80%, 0.589);
+    text-shadow: 0 0 5px blanchedalmond, 0 0 3px blanchedalmond;
 }
 body {
     margin: 0%;
@@ -29,7 +29,6 @@ body {
     font-family: Benne;
     display: inline-grid;
     overflow: hidden;
-
     grid-template-columns: 90vw 10vw;
     grid-template-rows: 11vh 79vh 10vh;
     font-size: 100%;
@@ -67,7 +66,7 @@ main {
     background: url(assets/wood-grain.jpg) right bottom fixed;
     background-repeat: repeat-x;
     background-size: cover;
-    overflow-y: auto;
+    overflow: hidden;
 }
 .sidebar {
     margin-top: 3vw;
@@ -134,7 +133,9 @@ a, input[type="submit"] {
     text-decoration: none;
     box-shadow: -0.2vw 0.2vw 0.3vw black;
     margin: 1vw;
+    padding-bottom: 0.2rem;
     transition: transform cubic-bezier(.68,.01,.61,1.61) 250ms, background-color 250ms cubic-bezier(.68,.01,.61,1.61);
+    overflow: hidden;
 }
 a:not(#logo), input[type="submit"] {
     line-height: 2.5rem;
@@ -277,6 +278,12 @@ p {
     .tile {
         width: 1vw;
         height: 1vw;
+    }
+    table, tr, td {
+        padding: 0;
+    }
+    #map {
+        padding: 0;
     }
     body {
         display: inline-grid;
