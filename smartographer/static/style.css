@@ -101,7 +101,7 @@ table, tr, td {
     border: 0px;
     margin: 0px;
     padding: 0px;
-    padding: 0.5px 0.5px 0px 0px;
+    padding: 1px 1px 0px 0px;
     border-spacing: 0;
 }
 .tile {
