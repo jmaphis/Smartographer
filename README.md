@@ -16,16 +16,15 @@ If you're just interested in playing around with the Smartographer app, you can 
 
 If you're interested in working with the code, simply clone the repository, navigate to the folder containing the app, and enter the following into the terminal:
 
-### For windows
+#### For windows
 
 ```
 > py -3 -m venv venv
 > venv\scripts\activate
 > pip3 install -r requirements.txt
-
 ```
 
-### For macOS/Linux
+#### For macOS/Linux
 
 ```
 $ python3 -m venv venv
