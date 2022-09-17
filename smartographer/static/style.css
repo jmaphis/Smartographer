@@ -176,6 +176,9 @@ form>label {
     font-size: 100%;
     margin-left: 1vw;
 }
+.sidebar > a,input[type="submit"] {
+    min-height: 2vw;
+}
 .delete-button:hover {
     background-color: darkred;
 }
