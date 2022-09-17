@@ -19,6 +19,7 @@ To fix this, you can reset that map type by clicking the corresponding link belo
 Smartographer is powered by 3 separate procedural generation algorithms, which serve as the back end. <br>
 They are connected to the front end by a Map Manager object, which fetches a map of the appropriate type.<br>
 These maps are represented by two dimensional arrays of binary integers, which the Map Manager converts \<div\> tags.<br>
+
 These underlying algorithms are as follows:<br>
 
 ### [Cave](https://smartographer.fly.dev/maps/gen/cave)
