@@ -10,6 +10,37 @@ There is currently a rare bug which will cause the site to crash while trying to
 [Dungeon](http://smartographer.fly.dev/maps/refresh_dungeon)<br>
 [World](http://smartographer.fly.dev/maps/refresh_world)<br>
 
+## How to use
+
+If you're just interested in playing around with the Smartographer app, you can do so [here](http://smartographer.fly.dev/).
+
+If you're interested in working with the code, simply clone the repository, navigate to the folder containing the app, and enter the following into the terminal:
+
+### For windows
+
+```
+> py -3 -m venv venv
+> venv\scripts\activate
+> pip3 install -r requirements.txt
+
+```
+
+### For macOS/Linux
+
+```
+$ python3 -m venv venv
+$ . venv/bin/avtivate
+$ pip3 install -r requirements.txt
+```
+
+This will create and activate the virtual environment, then install the dependancies. To run the app locally, enter the following:
+
+```
+$ flask --app smartographer --debug run
+```
+
+You can find the app, and any changes you make by opening your browser to http://127.0.0.1:5000/
+
 ## How it Works
 
 Smartographer is powered by 3 separate procedural generation algorithms, which serve as the back end. They are connected to the front end by a Map Manager object, which fetches a map of the appropriate type. These maps are represented by two dimensional arrays of binary integers, which the Map Manager converts \<div\> tags. Storing the maps in a database proved challenging, but seeding the random number generator, and storing the seed in the database allows the application to consistantly generate identical maps on demand.<br>
