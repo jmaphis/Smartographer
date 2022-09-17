@@ -38,7 +38,7 @@ This will create and activate the virtual environment, then install the dependan
 $ flask --app smartographer --debug run
 ```
 
-You can find the app, and any changes you make by opening your browser to http://127.0.0.1:5000/
+You can find the app, and any changes you make, by opening your browser to http://127.0.0.1:5000/
 
 ## How it Works
 
