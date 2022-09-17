@@ -1,4 +1,6 @@
-<h1 style="
+<h1>[Smartographer](http://smartographer.fly.dev)</h1>
+<style>
+  h1 {
     position: fixed;
     top: 0vw;
     background-color: rgb(38, 29, 24);
@@ -12,7 +14,9 @@
     color: blanchedalmond;
     text-shadow: -0.25vw 0.25vw 0.3vw black;
     border: .4vw solid rgb(240, 205, 102);
-    border-radius: 2em;>[Smartographer](http://smartographer.fly.dev)</h1>
+    border-radius: 2em;
+  }
+ </style>
 
 ## About
 
