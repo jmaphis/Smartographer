@@ -1,5 +1,7 @@
 # [Smartographer](http://smartographer.fly.dev)</h1>
 
+![passing](https://img.shields.io/badge/build-passing-success)
+
 ## About
 
 Smartographer is a map generation web app, by James Maphis. <br>
